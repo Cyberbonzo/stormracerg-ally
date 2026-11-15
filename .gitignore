@@ -1,0 +1,17 @@
+*
+!*/
+!*.py
+!*.sh
+!*.md
+!LICENSE
+!VERSION
+!PUBLIC_FILES.txt
+!.gitignore
+!.gitattributes
+__pycache__/
+dist/
+game/
+artes/
+logs/
+compatdata/
+dependencias/
