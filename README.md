@@ -34,12 +34,24 @@ A configuração lê o controle virtual Xbox One Elite 2 do InputPlumber. Não u
 ## Funcionamento
 
 - Texto em inglês e unidades métricas já presentes nesta revisão.
+- A etapa de tirar foto é pulada: depois de escolher a direção/derrapagem, o jogo segue para a preparação da corrida, com o avatar padrão.
 - Renderização configurada em 1920×1080, janela sem bordas na tela do Ally. Os recursos gráficos e a interface mantêm a arte original.
 - Jogo local; a lista de servidores de sincronização é esvaziada. Multiplayer em rede e gabinete de movimento não são parte desta integração.
 - Interface de controles a 125 Hz, comunicação TCP somente em loopback.
 - Avisos da versão de desenvolvimento deixam de restaurar o console sobre a partida.
 - Pausa com interface própria em inglês: PAUSED, RESUME e INFINITE BOOST — YES / NO. Use o direcional para escolher e A para confirmar; B ou Menu retoma. O cheat começa em NO a cada abertura do jogo, usa a opção nativa de boost infinito e pode ser alterado durante a corrida. X continua acionando o boost.
 - Enquanto o menu está aberto, o processo do jogo fica parado e seus relógios descontam o intervalo da pausa.
+- Salvamento e carregamento automáticos: carros e pistas liberados e pontos de desbloqueio continuam disponíveis ao reabrir o jogo. Tempos e estatísticas usam os arquivos nativos, com cópias de segurança automáticas.
+
+## Progresso automático
+
+Não é preciso apertar um botão para salvar ou carregar. O progresso fica na pasta privada `saves/`, com duas cópias verificadas de `progress.json`. As conquistas são observadas a cada 250 ms e gravadas quando mudam; o fim da sessão arcade não zera mais os desbloqueios.
+
+Os recordes nativos ficam em `game/assets/save/` e o histórico em `game/bin/racing.db`. São copiados a cada cinco segundos quando há alterações, usando o backup consistente do SQLite. Na abertura, arquivos nativos ausentes ou danificados são recuperados da cópia de segurança; arquivos válidos mais recentes são preservados. As rotinas locais que descartavam histórico por idade, quantidade ou sincronização foram desativadas. O registro de resultados em sessões sem fichas foi habilitado.
+
+É um perfil local único. A partida começa pelo menu com as conquistas anteriores; não é um save state que retoma o carro no meio da pista. Tempos e resultados dependem de a corrida chegar à etapa em que o próprio jogo os registra. O sistema preserva o progresso existente nos arquivos e na sessão atual; não recupera conquistas que já tinham sido apagadas antes da instalação.
+
+Para copiar o progresso a outro dispositivo, feche o jogo e copie `saves/`, `game/assets/save/` e `game/bin/racing.db`. Nenhum desses dados entra no repositório público.
 
 Veja [validação](docs/VALIDACAO.md) e [dependências](docs/DEPENDENCIAS.md).
 

@@ -55,7 +55,7 @@ def main():
     subprocess.run(['cabextract','-q','-d',str(r/'dependencias/codec'),str(codec)],check=True)
     shutil.copy2(r/'dependencias/codec/wm64/wmv9vcm.dll',r/'game/bin/WMV9VCM.dll')
     repo=Path(__file__).resolve().parents[1]
-    for name in ('jogar.sh','source/run.py','source/controls.py','source/pause.py','source/pause_menu.py','source/cheats.py','source/configure.py'):
+    for name in ('jogar.sh','source/run.py','source/controls.py','source/pause.py','source/pause_menu.py','source/cheats.py','source/configure.py','source/autosave.py'):
         shutil.copy2(repo/name,r/name)
     (r/'jogar.sh').chmod(0o755)
     sys.path.insert(0,str(r/'source'))

@@ -15,5 +15,11 @@ Hardware: ROG Ally X com Bazzite, Proton 11.0 e InputPlumber.
 - Velocidade e distância em unidades métricas observadas na corrida.
 - Console de diagnóstico: identificado o roubo de foco após aviso de áudio ausente. A correção retorna a opção de continuar sem restaurar a janela do console; o jogo foi reiniciado e testado novamente.
 - Artes originais extraídas apenas da cópia privada e os cinco arquivos do Steam conferidos por SHA-256.
+- Autosave: sete carros extras existentes foram capturados e recuperados automaticamente após encerrar e reabrir o processo.
+- Banco nativo: resultado novo de 119,518661 segundos registrado e conferido novamente após reiniciar. Gravação de sessões sem fichas habilitada na inicialização do gerenciador de recordes.
+- Recuperação automatizada testada com dados sintéticos: perfil truncado, save nativo danificado e banco corrompido. Os backups recuperaram os dados; um banco válido com resultado mais recente foi preservado.
+- Configuração aplicada duas vezes com os mesmos hashes finais, sem duplicação de opções.
+- Etapa da foto: sequência observada após reiniciar `TITLE → FIND_SERVER → LEVEL_SELECT → CAR_SELECT → DRIFT_SELECT → WAITING_SCREEN → START_RACE → LOADING_SCREEN → ROLLING_START → RACE_RUNNING`. O estado `PHOTO_TAKING` não foi executado. A preparação interna da tela de espera foi mantida.
+- Pausa testada com a alteração da foto instalada: duas capturas idênticas durante a pausa e imagem diferente ao retomar.
 
 Limitações: o conteúdo fornecido é uma versão de desenvolvimento com alguns recursos ausentes, incluindo avisos de áudio e objetos visuais de checkpoints. As correções upstream contornam os acessos inválidos; não recriam os recursos. Todas as pistas e situações de corrida ainda não foram verificadas. Não há promessa de compatibilidade com outras revisões.

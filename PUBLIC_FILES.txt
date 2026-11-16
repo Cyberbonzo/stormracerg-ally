@@ -9,6 +9,7 @@ docs/DEPENDENCIAS.md
 docs/VALIDACAO.md
 jogar.sh
 source/cheats.py
+source/autosave.py
 source/configure.py
 source/controls.py
 source/pause.py
@@ -18,3 +19,4 @@ tools/instalar.py
 tools/instalar_artes.py
 tools/publicar_pacote.py
 tools/steam_cdp.py
+tools/test_autosave.py
