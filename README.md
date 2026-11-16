@@ -57,7 +57,9 @@ Veja [validação](docs/VALIDACAO.md) e [dependências](docs/DEPENDENCIAS.md).
 
 ## Artes
 
-As artes são privadas. Para aplicá-las ao Steam, forneça `portrait.jpg`, `hero.jpg`, `landscape.jpg`, `logo.png` e `icon.png` em `artes/` e use `tools/instalar_artes.py --root ... --app-id ... --account ...`, com o Steam aberto e sua interface de depuração local disponível. Nenhuma imagem acompanha este projeto.
+As artes são privadas. Forneça cinco imagens em `artes/`: `portrait.png` (2:3), `hero.png` (panorâmica, aproximadamente 3:1), `landscape.png` (16:9), `logo.png` (RGBA com fundo transparente) e `icon.png` (quadrado). Capa, banner, imagem horizontal e ícone também aceitam JPG; PNG tem preferência quando os dois existem. Cada peça deve ter sua própria composição, sem esticar a mesma imagem para formatos diferentes.
+
+Use `python3 tools/instalar_artes.py --root ... --app-id ... --account ...`, com o Steam aberto e sua interface de depuração local disponível. O instalador valida as proporções e a transparência, preserva uma cópia das imagens anteriores do Steam e confere cada arquivo instalado por SHA-256. Dimensões e hashes ficam em `logs/artwork-verification.json`. Nenhuma imagem acompanha este projeto.
 
 ## Publicação
 

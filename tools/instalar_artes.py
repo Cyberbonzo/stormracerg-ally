@@ -8,6 +8,7 @@ import shutil
 import time
 from datetime import datetime
 from pathlib import Path
+from PIL import Image
 from steam_cdp import SteamCDP
 
 def digest(path):
@@ -24,8 +25,22 @@ def main():
     root=args.root.expanduser().resolve();art=root/'artes'
     grid=Path.home()/'.local/share/Steam/userdata'/args.account/'config/grid'
     assert grid.is_dir(),'Steam grid directory not found'
-    assets=[('portrait.jpg',0,'p'),('hero.jpg',1,'_hero'),
-            ('logo.png',2,'_logo'),('landscape.jpg',3,''),('icon.png',4,'_icon')]
+    assets=[]
+    for stem,kind,suffix in [('portrait',0,'p'),('hero',1,'_hero'),
+                             ('logo',2,'_logo'),('landscape',3,''),('icon',4,'_icon')]:
+        candidates=[art/(stem+ext) for ext in ('.png','.jpg')]
+        path=next((p for p in candidates if p.is_file()),None)
+        assert path is not None,'Missing artwork: '+stem
+        with Image.open(path) as im:
+            width,height=im.size;ratio=width/height
+            if stem=='portrait':assert abs(ratio-2/3)<.03,'Portrait must be 2:3'
+            if stem=='hero':assert 2.5<=ratio<=3.5,'Hero must be panoramic'
+            if stem=='landscape':assert abs(ratio-16/9)<.04,'Landscape must be 16:9'
+            if stem=='icon':assert abs(ratio-1)<.03,'Icon must be square'
+            if stem=='logo':
+                assert im.mode=='RGBA' and im.getchannel('A').getextrema()[0]==0,'Logo must have transparency'
+            im.load()
+        assets.append((path.name,kind,suffix))
     for filename,_,_ in assets:
         path=art/filename
         assert path.is_file() and path.stat().st_size<20_000_000,filename
@@ -55,9 +70,9 @@ def main():
             if dest.is_file() and digest(dest)==digest(src):break
             time.sleep(.1)
         assert dest.is_file() and digest(dest)==digest(src),f'Artwork not persisted: {filename}'
-        report['assets'].append({'source':filename,'steam_file':dest.name,'sha256':digest(src),'verified':True})
+        with Image.open(src) as im:size=list(im.size)
+        report['assets'].append({'source':filename,'steam_file':dest.name,'size':size,'sha256':digest(src),'verified':True})
         print('Installed and verified:',filename,flush=True)
-    c.evaluate('SteamClient.Apps.SetShortcutIcon('+str(args.app_id)+','+json.dumps(str(art/'icon.png'))+')')
     report['overview']=c.evaluate(f'({{custom_images_found:appStore.GetAppOverviewByAppID({args.app_id}).custom_images_found}})')
     (root/'logs').mkdir(exist_ok=True)
     (root/'logs/artwork-verification.json').write_text(json.dumps(report,indent=2)+'\n')

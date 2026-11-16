@@ -2,6 +2,7 @@
 
 ## 0.1.0
 
+- Instalador de artes com preferência por PNG, validação das proporções de cada peça e do fundo transparente do logo; relatório com dimensões e SHA-256.
 - Salvamento e carregamento automáticos de carros, pistas e pontos de desbloqueio.
 - Cópias redundantes do perfil, backup consistente dos saves nativos e recuperação de arquivos danificados.
 - Correção da configuração XML do banco, registro de resultados em free play e retenção do histórico local.

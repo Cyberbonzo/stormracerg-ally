@@ -14,7 +14,7 @@ Hardware: ROG Ally X com Bazzite, Proton 11.0 e InputPlumber.
 - Renderização 1920×1080 confirmada no dispositivo Direct3D. Amostra de 12 segundos ativos: 59,90–60,98 FPS (média 60,10); não garante desempenho em todas as pistas.
 - Velocidade e distância em unidades métricas observadas na corrida.
 - Console de diagnóstico: identificado o roubo de foco após aviso de áudio ausente. A correção retorna a opção de continuar sem restaurar a janela do console; o jogo foi reiniciado e testado novamente.
-- Artes originais extraídas apenas da cópia privada e os cinco arquivos do Steam conferidos por SHA-256.
+- Artes privadas renovadas com cinco composições distintas: capa 1024×1536, banner 2172×724, horizontal 1672×941, logo RGBA 2172×724 e ícone 1254×1254. Proporções e transparência validadas; os cinco arquivos instalados no Steam conferidos por SHA-256. Banner e logo inspecionados juntos em captura real do modo jogo do Ally. Imagens permanecem fora do pacote público.
 - Autosave: sete carros extras existentes foram capturados e recuperados automaticamente após encerrar e reabrir o processo.
 - Banco nativo: resultado novo de 119,518661 segundos registrado e conferido novamente após reiniciar. Gravação de sessões sem fichas habilitada na inicialização do gerenciador de recordes.
 - Recuperação automatizada testada com dados sintéticos: perfil truncado, save nativo danificado e banco corrompido. Os backups recuperaram os dados; um banco válido com resultado mais recente foi preservado.
